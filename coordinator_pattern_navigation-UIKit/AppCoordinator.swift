@@ -7,67 +7,34 @@
 
 import UIKit
 
-protocol Coordinator {
-    associatedtype Destination
-    
-    var navigationController: UINavigationController { get }
-    
-    func pushViewController(_ viewController: UIViewController)
-    
-    func presentViewController(_ viewController: UIViewController)
-    
-    func showAlert(title: String, message: String)
-    
-    func start(with destination: Destination)
-}
-
-extension Coordinator {
-    func pushViewController(_ viewController: UIViewController) {
-        navigationController.pushViewController(viewController, animated: true)
-    }
-    
-    func presentViewController(_ viewController: UIViewController) {
-        let presentedNavigationController = UINavigationController(rootViewController: viewController)
-        navigationController.present(presentedNavigationController, animated: true)
-    }
-    
-    func showAlert(title: String, message: String) {
-        let alert = UIAlertController(
-            title: title,
-            message: message,
-            preferredStyle: .alert
-        )
-        
-        alert.addAction(.init(title: "OK", style: .default))
-        navigationController.present(alert, animated: true)
-    }
-}
-
 class AppCoordinator: Coordinator {
     let navigationController = UINavigationController()
     
-    // add other destinations
+    // AppCoordinator deals with only single Coordinator started from `SceneDelegate`.
+    // In complex applications if there are multilevel hierarchy of views
+    // then Destination will deal with multiple destination cases.
+    // From different places different `destination` might be started
     enum Destination {
-        case mainView
+        case rootView
     }
     
-    func start(with destination: Destination = .mainView) {
+    func start(with destination: Destination = .rootView) {
         switch destination {
-        case .mainView:
+        case .rootView:
             pushViewController(mainViewController)
         }
     }
 }
 
-// MARK: MainView events
+// MARK: Handle MainView events
 
 extension AppCoordinator {
     private func handleEvent(_ event: MainViewModel.Event) {
         switch event {
         case .pushChildViewTapped:
-            pushViewController(childViewController)
+            pushViewController(childViewController(presentationType: .pushed))
         case .presentChildViewTapped:
-            presentViewController(childViewController)
+            presentViewController(childViewController(presentationType: .presented))
         case .showAlertTapped:
             showAlert(title: "Dummy Alert", message: "Dummy message for alert")
         }
@@ -80,8 +47,22 @@ extension AppCoordinator {
     }
 }
 
+// MARK: Handle ChildView events
+
 extension AppCoordinator {
-    var childViewController: ChildViewController {
-        .makeViewController(with: .init())
+    private func handleEvent(_ event: ChildViewModel.Event) {
+        switch event {
+        case .doneButtonTapped, .cancelButtonTapped:
+            dismiss()
+        case .backButtonTapped:
+            popViewController()
+        }
+    }
+    
+    private func childViewController(presentationType: ChildViewModel.PresentationType) -> ChildViewController {
+        .makeViewController(with: .init(
+            presentationType: presentationType,
+            handleEvent: handleEvent
+        ))
     }
 }

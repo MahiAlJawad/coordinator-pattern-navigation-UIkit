@@ -20,7 +20,35 @@ class ChildViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = viewModel.viewTitle
         label.text = viewModel.viewTitle
+        setupNavigationItems()
+    }
+    
+    private func setupNavigationItems() {
+        navigationItem.title = viewModel.viewTitle
+        
+        switch viewModel.presentationType {
+        case .pushed:
+            let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backButtonAction))
+            navigationItem.leftBarButtonItem = backButton
+        case .presented:
+            // Contains Done button and Cancel button in presented view
+            let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonAction))
+            let cancelButton = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelButtonAction))
+            navigationItem.rightBarButtonItem = doneButton
+            navigationItem.leftBarButtonItem = cancelButton
+        }
+    }
+    
+    @objc private func doneButtonAction() {
+        viewModel.doneButtonTapped()
+    }
+    
+    @objc private func cancelButtonAction() {
+        viewModel.cancelButtonTapped()
+    }
+    
+    @objc private func backButtonAction() {
+        viewModel.backButtonTapped()
     }
 }

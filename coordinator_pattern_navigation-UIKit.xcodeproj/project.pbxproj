@@ -10,6 +10,7 @@
 		5A80D3C52BB2DAB200D6AF6F /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A80D3C32BB2DAB200D6AF6F /* ChildViewController.swift */; };
 		5A80D3C82BB2DB0C00D6AF6F /* ChildViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A80D3C72BB2DB0C00D6AF6F /* ChildViewModel.swift */; };
 		5A80D3CA2BB2DC5200D6AF6F /* ChildViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A80D3C92BB2DC5200D6AF6F /* ChildViewStoryboard.storyboard */; };
+		5A80D3CC2BB2EA9700D6AF6F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A80D3CB2BB2EA9700D6AF6F /* Coordinator.swift */; };
 		5A8B820E2BB0470A009891F5 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B820D2BB0470A009891F5 /* AppCoordinator.swift */; };
 		5A8B82102BB04C77009891F5 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B820F2BB04C77009891F5 /* MainViewModel.swift */; };
 		5A8ECC842BAC90E7008D6011 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8ECC832BAC90E7008D6011 /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 		5A80D3C32BB2DAB200D6AF6F /* ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
 		5A80D3C72BB2DB0C00D6AF6F /* ChildViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildViewModel.swift; sourceTree = "<group>"; };
 		5A80D3C92BB2DC5200D6AF6F /* ChildViewStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChildViewStoryboard.storyboard; sourceTree = "<group>"; };
+		5A80D3CB2BB2EA9700D6AF6F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		5A8B820D2BB0470A009891F5 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		5A8B820F2BB04C77009891F5 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		5A8ECC802BAC90E7008D6011 /* coordinator_pattern_navigation-UIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "coordinator_pattern_navigation-UIKit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +90,7 @@
 			children = (
 				5A8ECC832BAC90E7008D6011 /* AppDelegate.swift */,
 				5A8ECC852BAC90E7008D6011 /* SceneDelegate.swift */,
+				5A80D3CB2BB2EA9700D6AF6F /* Coordinator.swift */,
 				5A8B820D2BB0470A009891F5 /* AppCoordinator.swift */,
 				5A80D3C22BB2DA9200D6AF6F /* ChildView */,
 				5A8B820A2BB04534009891F5 /* MainView */,
@@ -170,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A80D3CC2BB2EA9700D6AF6F /* Coordinator.swift in Sources */,
 				5A8B82102BB04C77009891F5 /* MainViewModel.swift in Sources */,
 				5A8ECC9A2BAC9397008D6011 /* MainViewController.swift in Sources */,
 				5A8B820E2BB0470A009891F5 /* AppCoordinator.swift in Sources */,
